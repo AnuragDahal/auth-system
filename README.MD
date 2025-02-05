@@ -44,11 +44,11 @@ auth-system/
 │   ├── routes/
 │   │   ├── auth.py
 │   │   └── user.py
-│   ├── utils/
-│   │   ├── jwtutil.py
-│   │   ├── passhashutils.py
-│   │   └── response.py
-│   └── main.py
+│   └── utils/
+│       ├── jwtutil.py
+│       ├── passhashutils.py
+│       └── response.py
+│   
 ├── .env
 ├── requirements.txt
 └── README.MD

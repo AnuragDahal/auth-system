@@ -1,4 +1,3 @@
-# from pymongo import MongoClient, IndexModel, ASCENDING
 from motor.motor_asyncio import AsyncIOMotorClient
 from .env import Environment
 

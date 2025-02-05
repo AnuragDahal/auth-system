@@ -1,7 +1,6 @@
 from fastapi import Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.responses import JSONResponse
-from jose import jwt
 from datetime import timedelta
 from app.utils.response import send_response
 from ..config.env import Environment
