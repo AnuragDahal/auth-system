@@ -71,7 +71,7 @@ pip install -r requirements.txt
 3. Create a `.env` file in the root directory and add the following environment variables:
 
 ```sh
-MONGO_URI="mongodb+srv://dahalcodecraft:WWpH6yh8Ssvs9ej7@projects.jp6z5.mongodb.net/"
+MONGO_URI="mongodb+srv://<username>:<password>@projects.jp6z5.mongodb.net/"
 SECRET_KEY = "4d2d63872da9bacbe250ddf9c2c948ff0a2664aece7a988827b8a67d88cda078"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_DAYS = 7
