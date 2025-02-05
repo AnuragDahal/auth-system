@@ -16,6 +16,9 @@ This project is a FastAPI-based authentication system that provides user signup,
  Login: `POST /auth/login`
  Profile: `GET /user/profile`
 
+## Dummy Data
+email:user@gmail.com
+password:Password@123
 
 ## Requirements
 
@@ -35,21 +38,21 @@ auth-system/
 │   │   ├── database.py
 │   │   ├── dependencies.py
 │   │   └── env.py
-│   ├── services/
-│   │   ├── authhandler.py
-│   │   ├── errorhandlers.py
-│   │   └── userhandler.py
 │   ├── models/
 │   │   └── schemas.py
 │   ├── routes/
 │   │   ├── auth.py
 │   │   └── user.py
+│   ├── services/
+│   │   ├── authhandler.py
+│   │   ├── errorhandlers.py
+│   │   └── userhandler.py
 │   └── utils/
 │       ├── jwtutil.py
 │       ├── passhashutils.py
 │       └── response.py
-│   
 ├── .env
+├── main.py
 ├── requirements.txt
 └── README.MD
 ```
