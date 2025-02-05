@@ -85,5 +85,24 @@ uvicorn main:app --reload
 
 The server will start at `http://localhost:8000`.
 
+## Testing Protected Routes
+
+To test the protected routes, you can use Postman by following these steps:
+
+1. **Obtain a Token**:
+   - First, obtain a JWT token by logging in through the `/auth/login` endpoint. Make sure to copy the token from the response.
+
+2. **Set Up Authorization**:
+   - In Postman, create a new request for the protected route you want to test.
+   - Go to the "Authorization" tab.
+   - Select "Bearer Token" from the "Type" dropdown.
+   - Paste the copied token into the "Token" field.
+
+3. **Send the Request**:
+   - Ensure the request method and URL are correct.
+   - Send the request to test the protected route.
+
+By following these steps, you can successfully test the protected routes using Postman with the token in the authorization headers as a Bearer Token.
+
 
 Happy coding! 🚀
