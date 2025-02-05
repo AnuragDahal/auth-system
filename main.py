@@ -19,8 +19,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.add_middleware(SessionMiddleware, secret_key=env.OAUTHSECRET_KEY)
-
 try:
     client.admin.command("ping")
     print("Connected to MongoDB")
