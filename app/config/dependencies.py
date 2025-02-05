@@ -11,17 +11,10 @@ env = Environment()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
 
-async def get_current_user(req: Request, token: Annotated[str, Depends(oauth2_scheme)]):
-    auth_header = req.headers.get("Authorization")
-    if auth_header and auth_header.startswith("Bearer "):
-        token = auth_header[7:]
-    else:
-        token = req.cookies.get("token")
-        if not token:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Could not find the appropriate headers or cookies"
-            )
+async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
+    if not token:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Could not validate credentials")
     try:
         payload = jwt.decode(token, env.SECRET_KEY, algorithms=[env.ALGORITHM])
         email = payload.get('sub')

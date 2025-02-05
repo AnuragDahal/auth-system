@@ -12,6 +12,8 @@ class UserLogin(BaseModel):
     email: EmailStr
     password: str
 
+
 class UserResponseModel(BaseModel):
+    status: str
     message: str
     data: Optional[dict]

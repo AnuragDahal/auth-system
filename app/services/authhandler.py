@@ -1,6 +1,5 @@
 from fastapi import Depends
 from fastapi.security import OAuth2PasswordRequestForm
-from fastapi.responses import JSONResponse
 from datetime import timedelta
 from app.utils.response import send_response
 from ..config.env import Environment
@@ -42,28 +41,13 @@ class AuthHandler:
 
     @staticmethod
     async def handleLogin(request: OAuth2PasswordRequestForm = Depends()):
-        user_email = await user_collection.find_one({"email": request.username})
-        if user_email and Encrypt.verify_password(request.password, user_email["password"]):
+        user = await user_collection.find_one({"email": request.username})
+        if user:
+            if not Encrypt.verify_password(request.password, user["password"]):
+                return ErrorHandler.Unauthorized("Incorrect email or password")
             access_token_expires = timedelta(
                 days=ACCESS_TOKEN_EXPIRE_DAYS)
             access_token = create_access_token(
-                data={"sub": user_email["email"]}, expires_delta=access_token_expires)
-
-            response = JSONResponse(
-                content={"access_token": access_token,
-                         "token_type": TOKEN_TYPE}
-            )
-            response.set_cookie(
-                key=TOKEN_KEY,
-                value=access_token,
-                httponly=True,
-                max_age=int(access_token_expires.total_seconds()),
-                expires=int(access_token_expires.total_seconds()),
-                samesite="None",
-                secure=True,
-                path="/"
-            )
-            return send_response(message="User logged in successfully", data={
-                "access_token": access_token,
-            })
+                data={"sub": user["email"]}, expires_delta=access_token_expires)
+            return send_response(message="User Login SuccessFully", data={"access_token": access_token, "token_type": TOKEN_TYPE})
         return ErrorHandler.NotFound("User not found")
